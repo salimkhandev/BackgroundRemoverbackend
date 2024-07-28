@@ -10,13 +10,16 @@ const port = process.env.PORT || 5000;
 
 // Enable CORS
 app.use(cors());
-app.get('/',(req, res) => {
-    res.send('Hello World!')
-})
 
 // Set up multer for file uploads
 const upload = multer({ storage: multer.memoryStorage() });
 
+// Test route
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
+
+// Remove background route
 app.post('/remove-bg', upload.single('image_file'), async (req, res) => {
   if (!req.file) {
     return res.status(400).send('No file uploaded.');
