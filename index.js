@@ -8,14 +8,8 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // Enable CORS
-const corsOptions = {
-  origin: 'https://backgroundremover-eta.vercel.app', // Allow only your frontend domain
-  methods: 'GET,POST',
-  allowedHeaders: 'Content-Type,Authorization'
-};
-
-app.use(cors(corsOptions));
-
+const cors = require('cors');
+app.use(cors());
 
 // Set up multer for file uploads
 const upload = multer({ storage: multer.memoryStorage() });
