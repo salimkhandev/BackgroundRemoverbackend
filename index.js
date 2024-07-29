@@ -1,5 +1,4 @@
 const express = require('express');
-const cors = require('cors');
 const multer = require('multer');
 const axios = require('axios');
 const FormData = require('form-data');
@@ -9,7 +8,14 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // Enable CORS
-app.use(cors());
+const corsOptions = {
+  origin: 'https://backgroundremover-eta.vercel.app', // Allow only your frontend domain
+  methods: 'GET,POST',
+  allowedHeaders: 'Content-Type,Authorization'
+};
+
+app.use(cors(corsOptions));
+
 
 // Set up multer for file uploads
 const upload = multer({ storage: multer.memoryStorage() });
